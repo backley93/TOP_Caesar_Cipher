@@ -7,6 +7,19 @@ def caesar_cipher(string, shift_num)
     17 => 'Q', 18 => 'R', 19 => 'S', 20 => 'T', 21 => 'U', 22 => 'V', 23 => 'W', 24 => 'X',
     25 => 'Y', 26 => 'Z'
   }
-  string = string.upcase!
-  array = string.split('')
+  string.upcase!
+  chars = string.split('')
+  new_str = ''
+  k_val = 0
+  chars.each do |item|
+    hash.each do |k, v|
+      if item == v
+        k_val = k + shift_num
+        new_str = new_str + hash[k_val]
+      end
+    end
+  end
+  p new_str.capitalize
 end
+
+caesar_cipher("Drive a truck.", 3)
