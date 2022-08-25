@@ -1,4 +1,7 @@
 def caesar_cipher(string, shift_index)
+  if shift_index > 25
+    shift_index = 25
+  end
   chars = string.split('')
   char_num = 0
   new_str = ''
