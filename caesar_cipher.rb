@@ -1,25 +1,21 @@
-require 'pry-byebug'
-
-def caesar_cipher(string, shift_num)
-  hash = {
-    1 => 'A', 2 => 'B', 3 => 'C', 4 => 'D', 5 => 'E', 6 => 'F', 7 => 'G', 8 => 'H',
-    9 => 'I', 10 => 'J', 11 => 'K', 12 => 'L', 13 => 'M', 14 => 'N', 15 => 'O', 16 => 'P',
-    17 => 'Q', 18 => 'R', 19 => 'S', 20 => 'T', 21 => 'U', 22 => 'V', 23 => 'W', 24 => 'X',
-    25 => 'Y', 26 => 'Z'
-  }
-  string.upcase!
+def caesar_cipher(string, shift_index)
   chars = string.split('')
+  char_num = 0
   new_str = ''
-  k_val = 0
-  chars.each do |item|
-    hash.each do |k, v|
-      if item == v
-        k_val = k + shift_num
-        new_str = new_str + hash[k_val]
+  chars.each do |char|
+    char_num = char.ord
+    if (char_num > 64 && char_num < 91)
+      char_num += shift_index
+      if (char_num > 90)
+        char_num -= 26
+      end
+    elsif (char_num > 96 && char_num < 123)
+      char_num += shift_index
+      if (char_num > 122)
+        char_num -= 26
       end
     end
+    new_str = new_str + char_num.chr
   end
-  p new_str.capitalize
+  p new_str
 end
-
-caesar_cipher("Drive a truck.", 3)
